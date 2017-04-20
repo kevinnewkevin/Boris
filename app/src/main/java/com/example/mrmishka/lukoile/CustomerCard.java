@@ -41,8 +41,11 @@ public class CustomerCard extends Fragment {
 
 
     TextView clientName, clientBonus;
+    TextView currentDate, allSumFueling, countFueling;
+    TextView LastDate, LastallSumFueling, LastcountFueling;
     String naming;
     TransactionAdapter adapter;
+    String cDate, aSum, cFueling, lDate, laSum, lFueling;
     ArrayList<TransactionParams> paramses = new ArrayList<TransactionParams>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +57,13 @@ public class CustomerCard extends Fragment {
         clientName = (TextView) view.findViewById(R.id.clientName);
         clientBonus = (TextView) view.findViewById(R.id.myBonus);
 
+        currentDate = (TextView) view.findViewById(R.id.currentDate);
+        allSumFueling = (TextView) view.findViewById(R.id.allSumFueling);
+        countFueling = (TextView) view.findViewById(R.id.countFueling);
+
+        LastDate = (TextView) view.findViewById(R.id.LastDate);
+        LastallSumFueling = (TextView) view.findViewById(R.id.LastallSumFueling);
+        LastcountFueling = (TextView) view.findViewById(R.id.LastcountFueling);
         getCardParam = new GetCard();
         getCardParam.execute("http://jambik.ru/api/user/auth?email=9285100611&password=123456");
         return view;
@@ -79,6 +89,10 @@ public class CustomerCard extends Fragment {
             listView.setAdapter(adapter);
             clientBonus.setText(s);
             clientName.setText(naming);
+            currentDate.setText(cDate);
+            allSumFueling.setText(aSum);
+            LastDate.setText(lDate);
+            LastallSumFueling.setText(laSum);
         }
 
         @Override
@@ -150,7 +164,13 @@ public class CustomerCard extends Fragment {
             }
             JSONObject parentObject = new JSONObject(buffer.toString());
             JSONArray parentArray = parentObject.getJSONArray("discounts");
-            StringBuffer finalBufferedData = new StringBuffer();
+            JSONObject CurrentTransaction = parentArray.getJSONObject(0);
+            cDate = CurrentTransaction.getString("date");
+            aSum = CurrentTransaction.getString("amount");
+            JSONObject LastTransaction = parentArray.getJSONObject(1);
+            lDate = LastTransaction.getString("date");
+            laSum = LastTransaction.getString("amount");
+
             for (int i = 0; i < parentArray.length(); i++) {
                 JSONObject finalobject = parentArray.getJSONObject(i);
                 String typeOfFuel = finalobject.getString("fuel_name");
@@ -158,7 +178,7 @@ public class CustomerCard extends Fragment {
                 double price = finalobject.getDouble("price");
                 double point = finalobject.getDouble("point");
 
-                paramses.add(new TransactionParams(typeOfFuel, volume + "Л","+ "+ price,"- "+ point));
+                paramses.add(new TransactionParams(typeOfFuel, volume + "Л", "+ " + price, "- " + point));
             }
 
 
