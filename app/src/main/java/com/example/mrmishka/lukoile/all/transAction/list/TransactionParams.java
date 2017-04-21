@@ -1,4 +1,4 @@
-package com.example.mrmishka.lukoile;
+package com.example.mrmishka.lukoile.all.transAction.list;
 
 /**
  * Created by MrMishka on 20.04.2017.
@@ -10,7 +10,7 @@ public class TransactionParams {
     String bonusPLus;
     String bonusMinus;
 
-    TransactionParams(String _fuelnameAndLitres,String _litres,String _bonusPLus,String _bonusMinus){
+    public TransactionParams(String _fuelnameAndLitres, String _litres, String _bonusPLus, String _bonusMinus){
         this.fuelname = _fuelnameAndLitres;
         this.litres = _litres;
         this.bonusPLus = _bonusPLus;

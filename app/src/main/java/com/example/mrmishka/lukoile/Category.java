@@ -6,12 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.widget.Switch;
-import android.widget.TextView;
+
+import com.example.mrmishka.lukoile.maps.MapsAZS;
+import com.example.mrmishka.lukoile.promotion.Promotions;
 
 public class Category extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -28,7 +27,7 @@ public class Category extends AppCompatActivity implements TabLayout.OnTabSelect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+      //  toolbar = (Toolbar) findViewById(R.id.toolbar);
         mViewPager = (ViewPager) findViewById(R.id.container);
 
 
@@ -42,8 +41,8 @@ public class Category extends AppCompatActivity implements TabLayout.OnTabSelect
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setOnTabSelectedListener(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("КАРТА КЛИЕНТА");
+    //    setSupportActionBar(toolbar);
+     //   getSupportActionBar().setTitle("КАРТА КЛИЕНТА");
     }
 
     @Override
@@ -51,14 +50,14 @@ public class Category extends AppCompatActivity implements TabLayout.OnTabSelect
         switch (tab.getPosition()) {
 
             case 0:
-                getSupportActionBar().setTitle("КАРТА КЛИЕНТА");
+        //        getSupportActionBar().setTitle("КАРТА КЛИЕНТА");
 
                 break;
             case 1:
-                getSupportActionBar().setTitle("СПИСОК АЗС");
+        //        getSupportActionBar().setTitle("СПИСОК АЗС");
                 break;
             case 2:
-                getSupportActionBar().setTitle("АКЦИИ");
+       //         getSupportActionBar().setTitle("АКЦИИ");
                 break;
             default:
                 break;

@@ -1,4 +1,4 @@
-package com.example.mrmishka.lukoile;
+package com.example.mrmishka.lukoile.all.transAction.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
+import com.example.mrmishka.lukoile.R;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class TransactionAdapter extends BaseAdapter {
     ArrayList<TransactionParams> object;
     Context ctx;
 
-    TransactionAdapter(Context context, ArrayList<TransactionParams> tParams) {
+    public TransactionAdapter(Context context, ArrayList<TransactionParams> tParams) {
         ctx = context;
         object = tParams;
         lInflater = (LayoutInflater) ctx

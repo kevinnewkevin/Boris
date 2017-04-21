@@ -3,15 +3,19 @@ package com.example.mrmishka.lukoile;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import com.example.mrmishka.lukoile.all.transAction.list.TransactionAdapter;
+import com.example.mrmishka.lukoile.all.transAction.list.TransactionParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,10 +54,12 @@ public class CustomerCard extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.customer_card, container, false);
+        View view = inflater.inflate(R.layout.activity_scrolling, container, false);
+
 
 
         listView = (ListView) view.findViewById(R.id.ListTransactions);
+
         clientName = (TextView) view.findViewById(R.id.clientName);
         clientBonus = (TextView) view.findViewById(R.id.myBonus);
 
@@ -69,6 +75,8 @@ public class CustomerCard extends Fragment {
         return view;
 
     }
+
+
 
     class GetCard extends AsyncTask<String, Void, String> {
 
@@ -137,16 +145,59 @@ public class CustomerCard extends Fragment {
                 }
             }
         }
-        connection.disconnect();
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         return s;
 
     }
 
+
+//    void Transactions(String api) {
+//        try {
+//            URL url = new URL("http://jambik.ru/api/user/gas_stations?api_token=" + api + "");
+//            connection = (HttpURLConnection) url.openConnection();
+//            connection.connect();
+//
+//            InputStream stream = connection.getInputStream();
+//            reader = new BufferedReader(new InputStreamReader(stream));
+//            StringBuffer buffer = new StringBuffer();
+//            String l = "";
+//            while ((l = reader.readLine()) != null) {
+//                buffer.append(l);
+//
+//            }
+//            JSONObject parentObject = new JSONObject(buffer.toString());
+//            JSONArray parentArray = parentObject.getJSONArray("gas_stations");
+//
+//
+//            for (int i = 0; i < parentArray.length(); i++) {
+//                JSONObject finalobject = parentArray.getJSONObject(i);
+//                String typeOfFuel = finalobject.getString("name");
+//                String volume = finalobject.getString("lat");
+//                String price = finalobject.getString("lng");
+//                String point = finalobject.getString("tags_service");
+//
+//                paramses.add(new TransactionParams(typeOfFuel, volume + "Л", "+ " + price, "- " + point));
+//            }
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (connection != null) {
+//                connection.disconnect();
+//            }
+//            if (reader != null) {
+//                try {
+//                    reader.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//    }
 
     void Transactions(String api) {
         try {
